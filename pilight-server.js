@@ -2,6 +2,7 @@ var express = require('express');
 var lights = require('./lights.js');
 var schedule = require('node-schedule');
 var lightcontrol = require('./lightcontrol.js');
+var winston = require('winston');
 
 var app = express();
 app.get('/lighton', lights.turnOn);
@@ -13,8 +14,10 @@ app.get('/lightoff', lights.turnOff);
 //app.put('lights', lights.updateLight);
 //app.delete('lights', lights.deleteLight);
 
+winston.add(winston.transports.File, { filename: 'pilight.log' });
 app.listen(3000);
-console.log('PiLight Server running on port 3000...');
+
+winston.info('Pilight Server running on port 3000...');
 
 var ruleOn = new schedule.RecurrenceRule();
 ruleOn.hour = 19;
@@ -32,4 +35,4 @@ var jobOff = schedule.scheduleJob(ruleOff, function(){
   lightcontrol.switchSocket1(0);
 });
 
-console.log('Light Schedule Configured');
+winston.info('Light Schedule Configured');

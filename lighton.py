@@ -27,7 +27,7 @@ GPIO.setup(22, GPIO.OUT)
 # Disable the modulator by setting CE pin lo
 GPIO.output (22, False)
 
-# Set the modulator to ASK for On Off Keying 
+# Set the modulator to ASK for On Off Keying
 # by setting MODSEL pin lo
 GPIO.output (18, False)
 
@@ -89,7 +89,7 @@ try:
 		GPIO.output (16, True)
 		GPIO.output (13, True)
 		# let it settle, encoder requires this
-		time.sleep(0.1)	
+		time.sleep(0.1)
 		# Enable the modulator
 		GPIO.output (22, True)
 		# keep enabled for a period
@@ -121,7 +121,7 @@ try:
 		GPIO.output (16, True)
 		GPIO.output (13, True)
 		# let it settle, encoder requires this
-		time.sleep(0.1)	
+		time.sleep(0.1)
 		# Enable the modulator
 		GPIO.output (22, True)
 		# keep enabled for a period
@@ -144,7 +144,7 @@ try:
 		time.sleep(0.25)
 		# Disable the modulator
 		GPIO.output (22, False)
-		
+
 		raw_input('hit return key to send socket 3 ON code')
 		# Set K0-K3
 		#"1101 and 0101 socket 3 ON and OFF"
@@ -154,7 +154,7 @@ try:
 		GPIO.output (16, True)
 		GPIO.output (13, True)
 		# let it settle, encoder requires this
-		time.sleep(0.1)	
+		time.sleep(0.1)
 		# Enable the modulator
 		GPIO.output (22, True)
 		# keep enabled for a period
@@ -177,8 +177,8 @@ try:
 		time.sleep(0.25)
 		# Disable the modulator
 		GPIO.output (22, False)
-		
-		
+
+
 		raw_input('SEND 4 ON 1100')
 		# Set K0-K3
 		print "4 ON"
@@ -203,14 +203,14 @@ try:
 		GPIO.output (16, True)
 		GPIO.output (13, False)
 		# let it settle, encoder requires this
-		time.sleep(0.1)	
+		time.sleep(0.1)
 		# Enable the modulator
 		GPIO.output (22, True)
 		# keep enabled for a period
 		time.sleep(0.25)
 		# Disable the modulator
 		GPIO.output (22, False)
-		
+
 
 		raw_input('hit return key to send ALL ON code')
 		# Set K0-K3
@@ -236,22 +236,22 @@ try:
 		GPIO.output (16, False)
 		GPIO.output (13, False)
 		# let it settle, encoder requires this
-		time.sleep(0.1)	
+		time.sleep(0.1)
 		# Enable the modulator
 		GPIO.output (22, True)
 		# keep enabled for a period
 		time.sleep(0.25)
 		# Disable the modulator
 		GPIO.output (22, False)
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
+
+
+
 
 # Clean up the GPIOs for next time
 except KeyboardInterrupt:

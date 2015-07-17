@@ -1,5 +1,6 @@
 var gpio = require('rpi-gpio');
 var async = require('async');
+var winston = require('winston');
 
 gpio.on('change', function(channel, value) {
     console.log('Channel ' + channel + ' value is now ' + value);
@@ -49,9 +50,9 @@ function setup(onOff, switchCallback) {
 	        gpio.setup(D3, gpio.DIR_OUT, callback)
     	},
 	], function(err, results) {
-    	
+
     	async.series([
-    		function(callback) {    			
+    		function(callback) {
     			delayedWrite(MOD_ENABLER, 0, callback); // Turn the modulator off
     		},
     		function(callback) {
@@ -70,15 +71,15 @@ function setup(onOff, switchCallback) {
             	gpio.write(D3, 0, callback);
         	}
         ], function(err, results) {
-        	switchCallback(onOff); // Now write out to the pins	
+        	switchCallback(onOff); // Now write out to the pins
         });
-	});	
+	});
 }
 
 // onOff is true or false
 exports.switchSocket1 = function(onOff) {
 	setup(onOff, function(onOff) {
-		console.log('switching socket 1');
+		winston.info('switching socket 1');
 		async.series([
 	        function(callback) {
             	delayedWrite(D0, 1, callback);
@@ -99,10 +100,10 @@ exports.switchSocket1 = function(onOff) {
 	           	delayedWrite(MOD_ENABLER, 0, callback);
         	}
     	], function(err, results) {
-    	    console.log('Writes complete, pause then unexport pins');
+    	    winston.info('Writes complete, pause then unexport pins');
         	setTimeout(function() {
             	gpio.destroy(function() {
-                	console.log('Closed pins');
+                	winston.info('Closed pins');
             	});
         	}, 500);
     	});
